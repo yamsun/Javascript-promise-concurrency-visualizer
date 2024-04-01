@@ -13,156 +13,168 @@
   </head>
   <body>
     <!-- <div>one</div> -->
-    <h3>Promise Concurrency Visualizer</h3>
-
-    <div>
-      <span>
-        <label for="promiseType">Select promise concurrency type:</label>
-        <select id="promiseType">
-          <option value="all" selected>Promise.all()</option>
-          <option value="allSettled">Promise.allSettled()</option>
-          <option value="any">Promise.any()</option>
-          <option value="race">Promise.race()</option>
-        </select>
-      </span>
-      <div class="btn-container">
-        <span class="buttons">
-          <button id="clear">Clear</button>
-          <button id="reset">Reset</button>
-          <button id="start">Start</button>
+    <main>
+      <h3>Promise Concurrency Visualizer</h3>
+  
+      <div>
+        <span>
+          <label for="promiseType">Select promise concurrency type:</label>
+          <select id="promiseType">
+            <option value="all" selected>Promise.all()</option>
+            <option value="allSettled">Promise.allSettled()</option>
+            <option value="any">Promise.any()</option>
+            <option value="race">Promise.race()</option>
+          </select>
         </span>
+        <div class="btn-container">
+          <span class="buttons">
+            <button id="clear">Clear</button>
+            <button id="reset">Reset</button>
+            <button id="start">Start</button>
+          </span>
+        </div>
+        <hr />
+        <div id="explain"></div>
+        <hr />
+      </div>
+  
+      <div id="container">
+        <div>
+          <em>
+            <b> Promise One </b>->
+            <span>
+              <span>
+                <label for="delay1">delay:</label>
+                <select id="delay1">
+                  <option value="1">1 sec</option>
+                  <option value="2" selected>2 sec</option>
+                  <option value="3">3 sec</option>
+                  <option value="4">4 sec</option>
+                  <option value="5">5 sec</option>
+                  <option value="6">6 sec</option>
+                  <option value="7">7 sec</option>
+                  <option value="8">8 sec</option>
+                  <option value="9">9 sec</option>
+                  <option value="10">10 sec</option>
+                </select>
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  id="resolve1"
+                  name="status1"
+                  value="resolve"
+                  checked
+                />
+                <label for="resolve1" checked="checked">Resolve</label>
+  
+                <input type="radio" id="reject1" name="status1" value="reject" />
+                <label for="reject1">Reject</label>
+              </span>
+            </span>
+          </em>
+          <div id="one" class="one"></div>
+          <div id="timeOne" class="one"></div>
+        </div>
+        <div>
+          <em>
+            <b> Promise Two </b>->
+            <span>
+              <span>
+                <label for="delay2">delay:</label>
+                <select id="delay2">
+                  <option value="1">1 sec</option>
+                  <option value="2" selected>2 sec</option>
+                  <option value="3">3 sec</option>
+                  <option value="4">4 sec</option>
+                  <option value="5">5 sec</option>
+                  <option value="6">6 sec</option>
+                  <option value="7">7 sec</option>
+                  <option value="8">8 sec</option>
+                  <option value="9">9 sec</option>
+                  <option value="10">10 sec</option>
+                </select>
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  id="resolve2"
+                  name="status2"
+                  value="resolve"
+                  checked
+                />
+                <label for="resolve2" checked="checked">Resolve</label>
+  
+                <input type="radio" id="reject2" name="status2" value="reject" />
+                <label for="reject2">Reject</label>
+              </span>
+            </span>
+          </em>
+          <div id="two" class="two"></div>
+          <div id="timeTwo" class="two"></div>
+        </div>
+        <div>
+          <em>
+            <b> Promise Three </b> ->
+            <span>
+              <span>
+                <label for="delay3">delay: </label>
+                <select id="delay3">
+                  <option value="1">1 sec</option>
+                  <option value="2" selected>2 sec</option>
+                  <option value="3">3 sec</option>
+                  <option value="4">4 sec</option>
+                  <option value="5">5 sec</option>
+                  <option value="6">6 sec</option>
+                  <option value="7">7 sec</option>
+                  <option value="8">8 sec</option>
+                  <option value="9">9 sec</option>
+                  <option value="10">10 sec</option>
+                </select>
+              </span>
+              <span>
+                <input
+                  type="radio"
+                  id="resolve3"
+                  name="status3"
+                  value="resolve"
+                  checked
+                />
+                <label for="resolve3" checked="checked">Resolve</label>
+  
+                <input type="radio" id="reject3" name="status3" value="reject" />
+                <label for="reject3">Reject</label>
+              </span>
+            </span>
+          </em>
+          <div id="three" class="three"></div>
+          <div id="timeThree" class="three"></div>
+        </div>
       </div>
       <hr />
-      <div id="explain"></div>
-      <hr />
-    </div>
-
-    <div id="container">
+  
       <div>
-        <em>
-          <b> Promise One </b>->
-          <span>
-            <span>
-              <label for="delay1">delay:</label>
-              <select id="delay1">
-                <option value="1">1 sec</option>
-                <option value="2" selected>2 sec</option>
-                <option value="3">3 sec</option>
-                <option value="4">4 sec</option>
-                <option value="5">5 sec</option>
-                <option value="6">6 sec</option>
-                <option value="7">7 sec</option>
-                <option value="8">8 sec</option>
-                <option value="9">9 sec</option>
-                <option value="10">10 sec</option>
-              </select>
-            </span>
-            <span>
-              <input
-                type="radio"
-                id="resolve1"
-                name="status1"
-                value="resolve"
-                checked
-              />
-              <label for="resolve1" checked="checked">Resolve</label>
-
-              <input type="radio" id="reject1" name="status1" value="reject" />
-              <label for="reject1">Reject</label>
-            </span>
-          </span>
-        </em>
-        <div id="one" class="one"></div>
-        <div id="timeOne" class="one"></div>
+        <div>
+          <b><em>Promise Result</em></b>
+        </div>
+        <div id="promise-verdict"></div>
+        <br />
+        <b>
+          <div id="timeResult"></div>
+        </b>
+        <br />
+        <div id="result"></div>
       </div>
-      <div>
-        <em>
-          <b> Promise Two </b>->
-          <span>
-            <span>
-              <label for="delay2">delay:</label>
-              <select id="delay2">
-                <option value="1">1 sec</option>
-                <option value="2" selected>2 sec</option>
-                <option value="3">3 sec</option>
-                <option value="4">4 sec</option>
-                <option value="5">5 sec</option>
-                <option value="6">6 sec</option>
-                <option value="7">7 sec</option>
-                <option value="8">8 sec</option>
-                <option value="9">9 sec</option>
-                <option value="10">10 sec</option>
-              </select>
-            </span>
-            <span>
-              <input
-                type="radio"
-                id="resolve2"
-                name="status2"
-                value="resolve"
-                checked
-              />
-              <label for="resolve2" checked="checked">Resolve</label>
+    </main>
 
-              <input type="radio" id="reject2" name="status2" value="reject" />
-              <label for="reject2">Reject</label>
-            </span>
-          </span>
-        </em>
-        <div id="two" class="two"></div>
-        <div id="timeTwo" class="two"></div>
-      </div>
-      <div>
-        <em>
-          <b> Promise Three </b> ->
-          <span>
-            <span>
-              <label for="delay3">delay: </label>
-              <select id="delay3">
-                <option value="1">1 sec</option>
-                <option value="2" selected>2 sec</option>
-                <option value="3">3 sec</option>
-                <option value="4">4 sec</option>
-                <option value="5">5 sec</option>
-                <option value="6">6 sec</option>
-                <option value="7">7 sec</option>
-                <option value="8">8 sec</option>
-                <option value="9">9 sec</option>
-                <option value="10">10 sec</option>
-              </select>
-            </span>
-            <span>
-              <input
-                type="radio"
-                id="resolve3"
-                name="status3"
-                value="resolve"
-                checked
-              />
-              <label for="resolve3" checked="checked">Resolve</label>
 
-              <input type="radio" id="reject3" name="status3" value="reject" />
-              <label for="reject3">Reject</label>
-            </span>
-          </span>
-        </em>
-        <div id="three" class="three"></div>
-        <div id="timeThree" class="three"></div>
+      <div class="bottom">
+        <div>Made with <b> &#128153; </b> and <b> &lt;/&gt; </b> by Shyam Sundar  </div>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/shyam-sundar1/" target="_blank">Linkedin</a>
+          <a href="https://github.com/yamsun" target="_blank">Github</a>
+        </div>
       </div>
-    </div>
-    <hr />
-
-    <div>
-      <div>
-        <b><em>Promise Result</em></b>
-      </div>
-      <div id="promise-verdict"></div>
-      <br />
-      <b>
-        <div id="timeResult"></div>
-      </b>
-      <br />
-      <div id="result"></div>
-    </div>
   </body>
 </html>
+ 

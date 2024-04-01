@@ -8,8 +8,13 @@ body {
   color: black;
   background-color: white;
   max-width: 600px;
-  padding: 16px;
   word-wrap: break-word;
+  /* padding-bottom: 0.5em; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
 }
 
 nav {
@@ -40,7 +45,7 @@ nav a[aria-current='page'] {
 }
 
 main {
-  padding: 1rem;
+  padding: 1em;
 }
 
 h1 {
@@ -109,4 +114,20 @@ h1 {
 p {
   padding: 0;
   margin: 8px 2px;
+}
+
+
+.bottom {
+  background-color: #c4b5fd;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  padding-bottom: 1em;
+}
+
+.links{
+  display: flex;
+  gap: 0.5em
 }
