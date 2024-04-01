@@ -124,10 +124,15 @@ p {
   flex-direction: column;
   gap: 4px;
   align-items: center;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-radius:  20px 20px 0px 0px;
 }
 
 .links{
   display: flex;
   gap: 0.5em
+}
+
+h3{
+  line-height: 0;
 }

@@ -1,5 +1,3 @@
-console.log('Hello!');
-
 const one = document.getElementById('one');
 const two = document.getElementById('two');
 const three = document.getElementById('three');
