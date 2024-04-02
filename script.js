@@ -15,6 +15,10 @@ const resetBtn = document.getElementById('reset');
 
 const explain = document.getElementById('explain');
 const promiseVerdict = document.getElementById('promise-verdict');
+const resultProgress = document.getElementById('result-progress');
+
+const mdnLinkElement = document.getElementById("mdn-link");
+
 
 const promiseExplanations = {
   all: `<code>Promise.all()</code>
@@ -27,20 +31,31 @@ const promiseExplanations = {
   <p>Settles when any of the promises settles. In other words, fulfills when any of the promises fulfills; rejects when any of the promises rejects.</p>`,
 };
 
+const mdnLinks = {
+  all: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all',
+  allSettled: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled',
+  any: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any',
+  race: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race'
+}
+
 let promiseType = document.getElementById('promiseType');
 explain.innerHTML = promiseExplanations[promiseType.value];
+mdnLinkElement.href = mdnLinks[promiseType.value]
 
 promiseType.addEventListener('change', (e) => {
   let newType = e.target.value;
   explain.innerHTML = promiseExplanations[newType];
+  mdnLinkElement.href = mdnLinks[newType]
+
 });
 
 console.log({ promiseType });
 
 const clear = () => {
-  [one, two, three, timeOne, timeTwo, timeThree, timeResult, result].map(
+  [one, two, three, timeOne, timeTwo, timeThree, timeResult, result, resultProgress].map(
     (i) => (i.innerHTML = '')
   );
+  resultProgress.style.color = ''
 };
 clearBtn.addEventListener('click', clear);
 
@@ -87,11 +102,11 @@ startBtn.addEventListener('click', () => {
       let timer = setInterval(() => {
         one.innerHTML += progressBar;
         time++;
+        timeOne.innerHTML = `${(time /10)} sec`;
       }, 100);
 
       setTimeout(() => {
         clearInterval(timer);
-        timeOne.innerHTML = `${time / 10} sec`;
         if (status1 === 'resolve') {
           resolve('one resolved');
         } else {
@@ -107,11 +122,11 @@ startBtn.addEventListener('click', () => {
       let timer = setInterval(() => {
         two.innerHTML += progressBar;
         time++;
+        timeTwo.innerHTML = `${(time /10)} sec`;
       }, 100);
 
       setTimeout(() => {
         clearInterval(timer);
-        timeTwo.innerHTML = `${time / 10} sec`;
         if (status2 === 'resolve') {
           resolve('two resolved');
         } else {
@@ -127,11 +142,11 @@ startBtn.addEventListener('click', () => {
       let timer = setInterval(() => {
         three.innerHTML += progressBar;
         time++;
+        timeThree.innerHTML = ` ${(time /10)} sec`;
       }, 100);
 
       setTimeout(() => {
         clearInterval(timer);
-        timeThree.innerHTML = ` ${time / 10} sec`;
         if (status3 === 'resolve') {
           resolve('three resolved');
         } else {
@@ -144,6 +159,8 @@ startBtn.addEventListener('click', () => {
   let resultTime = 0;
   let resultTimer = setInterval(() => {
     resultTime++;
+    timeResult.innerHTML = `${resultTime / 10} sec`;
+    resultProgress.innerHTML += progressBar
   }, 100);
 
   promiseVerdict.innerText = '<pending>';
@@ -168,6 +185,8 @@ startBtn.addEventListener('click', () => {
       promiseFunction = Promise.all([promise1, promise2, promise3]);
   }
 
+  startBtn.disabled = true
+  clearBtn.disabled = true
   promiseFunction
     .then((res) => {
       console.log(' res', res);
@@ -175,18 +194,22 @@ startBtn.addEventListener('click', () => {
       result.innerText = JSON.stringify(res);
       result.style.color = 'green';
       promiseVerdict.innerText = '<resolved>';
+      resultProgress.style.color = 'green'
     })
     .catch((err) => {
       console.log(' err', err, typeof err);
       clearInterval(resultTimer);
       result.innerText = err;
       console.log('JSON.stringify(err)', JSON.stringify(err));
-      result.style.color = 'tomato';
+      result.style.color = 'red';
+      resultProgress.style.color = 'red'
       promiseVerdict.innerText = '<rejected>';
     })
     .finally(() => {
-      timeResult.innerHTML = `${resultTime / 10} sec`;
-      promiseVerdict.innerText += ' -- settled';
+      // timeResult.innerHTML = `${resultTime / 10} sec`;
+      promiseVerdict.innerText += ' [settled]';
+      startBtn.disabled = false
+      clearBtn.disabled = false
     });
 });
 
