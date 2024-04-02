@@ -79,11 +79,13 @@ startBtn.addEventListener('click', () => {
     status3,
   });
 
+  const progressBar = "|"
+
   const getP1 = () => {
     return new Promise((resolve, reject) => {
       let time = 0;
       let timer = setInterval(() => {
-        one.innerHTML += '/';
+        one.innerHTML += progressBar;
         time++;
       }, 100);
 
@@ -103,7 +105,7 @@ startBtn.addEventListener('click', () => {
     return new Promise((resolve, reject) => {
       let time = 0;
       let timer = setInterval(() => {
-        two.innerHTML += '/';
+        two.innerHTML += progressBar;
         time++;
       }, 100);
 
@@ -123,7 +125,7 @@ startBtn.addEventListener('click', () => {
     return new Promise((resolve, reject) => {
       let time = 0;
       let timer = setInterval(() => {
-        three.innerHTML += '/';
+        three.innerHTML += progressBar;
         time++;
       }, 100);
 
@@ -165,8 +167,6 @@ startBtn.addEventListener('click', () => {
     default:
       promiseFunction = Promise.all([promise1, promise2, promise3]);
   }
-
-  console.log(promiseFunction, typeof promiseFunction);
 
   promiseFunction
     .then((res) => {
