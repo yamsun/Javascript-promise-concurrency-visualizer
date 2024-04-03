@@ -46,10 +46,8 @@ promiseType.addEventListener('change', (e) => {
   let newType = e.target.value;
   explain.innerHTML = promiseExplanations[newType];
   mdnLinkElement.href = mdnLinks[newType]
-
 });
 
-console.log({ promiseType });
 
 const clear = () => {
   [one, two, three, timeOne, timeTwo, timeThree, timeResult, result, resultProgress].map(
@@ -66,9 +64,6 @@ resetBtn.addEventListener('click', reset);
 
 startBtn.addEventListener('click', () => {
   clear();
-  // one.innerHTML = '';
-  // two.innerHTML = '';
-  // three.innerHTML = '';
 
   let delay1 = parseInt(document.getElementById('delay1').value);
   let delay2 = parseInt(document.getElementById('delay2').value);
@@ -85,14 +80,6 @@ startBtn.addEventListener('click', () => {
   let status3 = document.querySelector(
     "input[type='radio'][name='status3']:checked"
   ).value;
-
-  console.log({ delay1, delay2, delay3, promiseType });
-
-  console.log({
-    status1,
-    status2,
-    status3,
-  });
 
   const progressBar = "|"
 
@@ -189,7 +176,6 @@ startBtn.addEventListener('click', () => {
   clearBtn.disabled = true
   promiseFunction
     .then((res) => {
-      console.log(' res', res);
       clearInterval(resultTimer);
       result.innerText = JSON.stringify(res);
       result.style.color = 'green';
@@ -197,22 +183,17 @@ startBtn.addEventListener('click', () => {
       resultProgress.style.color = 'green'
     })
     .catch((err) => {
-      console.log(' err', err, typeof err);
       clearInterval(resultTimer);
       result.innerText = err;
-      console.log('JSON.stringify(err)', JSON.stringify(err));
       result.style.color = 'red';
       resultProgress.style.color = 'red'
       promiseVerdict.innerText = '<rejected>';
     })
     .finally(() => {
-      // timeResult.innerHTML = `${resultTime / 10} sec`;
       promiseVerdict.innerText += ' [settled]';
       startBtn.disabled = false
       clearBtn.disabled = false
     });
 });
 
-let a = 'all';
 
-// console.log({ k });
