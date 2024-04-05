@@ -1,8 +1,6 @@
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/yamsun/Javascript-promise-concurrency-visualizer)
-
 # JavaScript Promise Concurrency Visualizer
 
-![./assets/Screenshot.png]
+![Project Image](./assets/Screenshot.png)
 
 ## Overview
 
