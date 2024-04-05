@@ -15,7 +15,7 @@ The JavaScript Promise Concurrency Visualizer is a fun and educational project t
 
 ## Live Demo
 
-Check out the live demo [https://js-promise-vis.netlify.app/](https://js-promise-vis.netlify.app/).
+Check out the live demo [here](https://js-promise-vis.netlify.app/).
 
 ## Getting Started
 
